@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>User Roles</h2>
+  <table class="table">
+    <thead><tr><th>ID</th><th>Name</th><th></th></tr></thead>
+    <tbody>
+      {% for r in roles %}
+      <tr>
+        <td>{{r.id}}</td><td>{{r.name}}</td>
+        <td>
+          <form method="post" action="{{ url_for('delete_role', role_id=r.id) }}">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h3>Create Role</h3>
+  <form method="post">
+    <input name="name" class="form-control" placeholder="Role name">
+    <button class="btn btn-primary mt-2">Add Role</button>
+  </form>
+{% endblock %}

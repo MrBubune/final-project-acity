@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Event Logs</h2>
+
+  <form class="row g-3 mb-3" method="get">
+    <div class="col-auto">
+      <input
+        type="date" name="start"
+        class="form-control"
+        value="{{ start }}"
+        placeholder="Start date">
+    </div>
+    <div class="col-auto">
+      <input
+        type="date" name="end"
+        class="form-control"
+        value="{{ end }}"
+        placeholder="End date">
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" type="submit">Filter</button>
+    </div>
+  </form>
+  <table class="table table-striped" id="logs-table">
+    <thead>
+      <tr>
+        <th>Time</th><th>Client</th><th>Topic</th>
+        <th>Action</th><th>OK</th><th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for l in logs %}
+        <tr>
+          <td>{{l.timestamp}}</td><td>{{l.client_id}}</td><td>{{l.topic}}</td>
+          <td>{{l.action}}</td>
+          <td>{{ '✔' if l.success else '✖' }}</td>
+          <td>{{l.details}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- WebSocket script -->
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+          integrity="sha384-..." crossorigin="anonymous"></script>
+  <script>
+    const socket = io("/logs");
+    socket.on("new_log", row => {
+      const tbody = document.querySelector("#logs-table tbody");
+      const tr    = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.timestamp}</td>
+        <td>${row.client_id}</td>
+        <td>${row.topic}</td>
+        <td>${row.action}</td>
+        <td>${row.success ? "✔" : "✖"}</td>
+        <td>${row.details}</td>
+      `;
+      tbody.prepend(tr);
+    });
+  </script>
+{% endblock %}

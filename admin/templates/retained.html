@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Retained Messages</h2>
+  <table border=1 cellpadding=4>
+    <tr><th>Topic</th><th>Payload</th></tr>
+    {% for r in retained %}
+      <tr><td>{{r.topic}}</td><td>{{r.payload}}</td></tr>
+    {% endfor %}
+  </table>
+  <h3>Set Retained</h3>
+  <form method="post">
+    <input name="topic" placeholder="topic">
+    <input name="message" placeholder="message">
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

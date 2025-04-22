@@ -1,0 +1,18 @@
+How these tests map to objectives:
+
+1. Broker protocol compliance:
+- test_qos0_pubsub, test_qos1_handshake, test_qos2_handshake, test_lwt_and_clean_session
+- Verify CONNECT/CONNACK, SUBSCRIBE/SUBACK, PUBLISH/PUBACK, PUBREC/PUBREL/PUBCOMP, wildcard, retain, LWT.
+
+2. Embedded database & encryption:
+- test_db_at_rest_is_encrypted ensures the on‑disk SQLite file is not plaintext.
+- All integration tests exercise ACL lookups, retained storage, and logs.
+
+3. Security:
+- Clients must authenticate or are rejected (implicit in the tests).
+- ACLs enforced in test_broker_pubsub.
+- TLS is used by the clients in Publisher/Subscriber—if you disable certs in code, these would fail.
+
+4. Admin UI:
+- test_user_crud_and_acl_delete covers user creation, listing, ACL add & delete.
+- test_live_logs_socketio verifies live WebSocket log streaming.

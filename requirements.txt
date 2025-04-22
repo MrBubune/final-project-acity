@@ -1,0 +1,14 @@
+# Broker & core
+bcrypt>=3.2.2
+cryptography>=39.0.1
+
+# Web UI
+Flask>=2.2.5
+Flask-SocketIO>=5.3.2
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.22.0
+
+# Stress testing
+locust>=2.35.0

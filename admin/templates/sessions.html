@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Active Sessions</h2>
+  <table class="table">
+    <thead><tr><th>Client ID</th><th>Peer</th><th>Last Will</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for s in sessions %}
+        <tr>
+          <td>{{s.client_id}}</td>
+          <td>{{s.writer}}</td>
+          <td>{{s.will or "—"}}</td>
+          <td>
+            <form method="post"
+                  action="{{ url_for('disconnect_session', client_id=s.client_id) }}">
+              <button class="btn btn-sm btn-danger">Disconnect</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

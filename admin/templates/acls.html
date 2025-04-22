@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>ACLs</h2>
+  <table class="table">
+    <thead><tr><th>User</th><th>Topic</th><th>Sub</th><th>Pub</th><th></th></tr></thead>
+    <tbody>
+      {% for a in acls %}
+      <tr>
+        <td>{{a.username}}</td><td>{{a.topic}}</td>
+        <td>{{'✔' if a.can_subscribe else ''}}</td>
+        <td>{{'✔' if a.can_publish   else ''}}</td>
+        <td>
+          <form method="post" action="{{ url_for('delete_acl', acl_id=a.id) }}">
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h3>Grant ACL</h3>
+  <form method="post">
+    <select name="user_id">
+      {% for u in users %}<option value="{{u.id}}">{{u.username}}</option>{% endfor %}
+    </select>
+    <input name="topic" placeholder="topic filter">
+    <label><input type="checkbox" name="can_subscribe"> Subscribe</label>
+    <label><input type="checkbox" name="can_publish"> Publish</label>
+    <button type="submit">Grant</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Publish Message</h2>
+  <form method="post" class="row g-3">
+    <div class="col-md-4">
+      <label>Topic</label>
+      <input name="topic" class="form-control" required>
+    </div>
+    <div class="col-md-4">
+      <label>Payload</label>
+      <input name="payload" class="form-control" required>
+    </div>
+    <div class="col-md-2">
+      <label>QoS</label>
+      <select name="qos" class="form-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+    </div>
+    <div class="col-auto align-self-end">
+      <div class="form-check">
+        <input type="checkbox" name="retain" class="form-check-input" id="retain">
+        <label class="form-check-label" for="retain">Retain</label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label>Your Password</label>
+      <input name="password" type="password" class="form-control" required>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary">Publish</button>
+    </div>
+  </form>
+{% endblock %}
