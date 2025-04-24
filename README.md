@@ -15,7 +15,7 @@ A lightweight, secure MQTT broker implemented in Python, featuring:
 
 ---
 
-## 📦 Repository Layout
+## Repository Layout
 
 ```
 .
@@ -108,7 +108,7 @@ python -m admin.web
 
 ---
 
-## 💻 Usage Examples
+## Usage Examples
 
 ### Publisher
 
@@ -124,7 +124,7 @@ python -m client.subscriber --client-id <clientid> --username <username> --passw
 
 ---
 
-## 🔧 Development & Testing
+## Development & Testing
 
 ### Unit & Integration Tests (Pytest)
 
@@ -149,7 +149,7 @@ locust -f tests/stress/locustfile.py --host broker-hostname
 
 ---
 
-## 🧱 Architecture Overview
+## Architecture Overview
 
 1. **BrokerServer** (`broker/server.py`)  
    - Accepts TCP+TLS connections, spawns per-client tasks  
@@ -168,7 +168,7 @@ locust -f tests/stress/locustfile.py --host broker-hostname
 
 ---
 
-## 🚀 Roadmap / Future Enhancements
+## Roadmap / Future Enhancements
 
 - Distributed broker clustering & high availability  
 - Bridge support for cross-broker federation  
@@ -177,7 +177,7 @@ locust -f tests/stress/locustfile.py --host broker-hostname
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork & clone  
 2. Create a feature branch  
@@ -186,6 +186,6 @@ locust -f tests/stress/locustfile.py --host broker-hostname
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for details.
