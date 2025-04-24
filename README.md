@@ -37,7 +37,7 @@ A lightweight, secure MQTT broker implemented in Python, featuring:
 
 ---
 
-## 🏁 Quickstart
+## Quickstart
 
 ### 1. Clone & install
 
